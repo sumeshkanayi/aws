@@ -1,0 +1,14 @@
+Install ansible
+install aws
+run aws configure
+
+ansible-playbook -i "Localhost," -c local in.yaml 
+
+---
+- hosts: all
+  tasks:
+    - shell: echo "hello world"
+    - shell: aws codepipeline start-pipeline-execution --name devops
+    - shell: aws codepipeline get-pipeline-state --name devops
+      register: devops_status
+    - debug: msg="{{ devops_status  }}"
